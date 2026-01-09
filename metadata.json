@@ -1,0 +1,7 @@
+{
+  "name": "Maktab AI - Maktab Boshqaruv Tizimi",
+  "description": "O'quvchilar, o'qituvchilar va rahbariyat uchun sun'iy intellektga asoslangan zamonaviy ta'lim va baholash platformasi.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
