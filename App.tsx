@@ -13,11 +13,6 @@ import AdminPanel from './components/AdminPanel';
 userService.init();
 storageService.init();
 
-const CLASSES = [];
-for (let i = 5; i <= 11; i++) {
-  ['A', 'B', 'V'].forEach(letter => CLASSES.push(`${i}-${letter}`));
-}
-
 export const LanguageContext = createContext<{
   lang: Language;
   setLang: (l: Language) => void;
@@ -82,6 +77,11 @@ const RegisterPage: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  const CLASSES = [];
+  for (let i = 5; i <= 11; i++) {
+    ['A', 'B', 'V'].forEach(letter => CLASSES.push(`${i}-${letter}`));
+  }
+
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     const isRegistered = userService.register({ ...formData, role });
@@ -108,7 +108,7 @@ const RegisterPage: React.FC = () => {
               <input type="text" required className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-900" placeholder={t('subject')} value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} />
             ) : (
               <select className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-900" value={formData.className} onChange={e => setFormData({...formData, className: e.target.value})}>
-                {CLASSES.map(c => <option key={c} value={c}>{c} sinf</option>)}
+                {CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             )}
             {error && <p className="text-red-500 text-sm font-bold">{error}</p>}
@@ -136,8 +136,8 @@ const Navbar: React.FC<{ user: User | null; onLogout: () => void }> = ({ user, o
         </Link>
         <div className="flex items-center gap-4">
           <div className="flex bg-slate-100 p-1 rounded-xl">
-            {['uz', 'ru', 'en'].map(l => (
-              <button key={l} onClick={() => setLang(l as Language)} className={`px-2 py-1 rounded-lg text-xs font-bold ${lang === l ? 'bg-white shadow text-blue-600' : 'text-slate-400'}`}>
+            {(['uz', 'ru', 'en'] as Language[]).map(l => (
+              <button key={l} onClick={() => setLang(l)} className={`px-2 py-1 rounded-lg text-xs font-bold ${lang === l ? 'bg-white shadow text-blue-600' : 'text-slate-400'}`}>
                 {l.toUpperCase()}
               </button>
             ))}
